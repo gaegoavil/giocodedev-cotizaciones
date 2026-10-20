@@ -8,7 +8,7 @@
 <meta name="description" content="Cotización de Giocodedev_ para el rediseño de la web de Showbizz S.A.C.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   /* Layout: una carta-cotización de una sola columna, como un documento bien escrito.
      La marca aparece en el guion bajo de Giocodedev_, que funciona como cursor. */
@@ -22,17 +22,14 @@
     --accent-soft: #EBE9FF;
     --on-accent: #FFFFFF;
 
-    /* Colores de Showbizz, solo para la vista previa de su web (iguales en ambos temas) */
-    --sbz-ink: #0A0A0B;
-    --sbz-red: #E4232E;
-    --sbz-white: #FFFFFF;
-    --sbz-glow: rgba(228, 35, 46, .38);
-    --sbz-dim: rgba(255, 255, 255, .7);
+    /* Marco de los dispositivos en las capturas (igual en ambos temas) */
+    --device: #0B0C12;
+    --shade: rgba(15, 18, 34, .18);
+    --scrim: rgba(8, 9, 15, .88);
 
     --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
     --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    --f-client: "Space Grotesk", system-ui, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -76,35 +73,36 @@
 
   .letter { margin-top: 26px; display: grid; gap: 14px; max-width: 64ch; }
 
-  /* Vista previa */
-  .mock { container-type: inline-size; margin: 32px 0 0; max-width: 100%; }
-  .mock__frame { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--paper); }
-  .mock__bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); background: var(--bg); }
-  .mock__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
-  .mock__url { margin-left: 10px; font-family: var(--f-mono); font-size: .74rem; color: var(--muted); }
-  .mock__screen {
-    position: relative; overflow: hidden; aspect-ratio: 16 / 9; max-width: 100%;
-    display: flex; flex-direction: column; padding: 4cqi 5cqi 0;
-    background: radial-gradient(circle at 82% 18%, var(--sbz-glow), transparent 55%), var(--sbz-ink);
-    color: var(--sbz-white); font-family: var(--f-client);
+  /* Capturas del diseño */
+  figure { margin: 0; }
+  .shot { margin-top: 18px; }
+  .browser { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--device); box-shadow: 0 18px 40px -24px var(--shade); }
+  .browser__bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .browser__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .browser__bar span { margin-left: 10px; font-family: var(--f-mono); font-size: .74rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  .zoom img { display: block; width: 100%; height: auto; max-width: 100%; }
+  .shot figcaption { margin-top: 10px; font-size: .88rem; color: var(--muted); }
+
+  .duo { position: relative; margin-top: 32px; padding-bottom: 8%; }
+  .duo .browser { width: 88%; }
+  .phone {
+    position: absolute; right: 0; bottom: 0; width: 25%;
+    border-radius: 9% / 4.5%; border: 6px solid var(--device); overflow: hidden; background: var(--device);
+    box-shadow: 0 24px 50px -20px var(--shade);
   }
-  .mock__nav { display: flex; align-items: center; gap: 3cqi; }
-  .mock__logo { font-weight: 700; font-size: 2.6cqi; letter-spacing: -.04em; line-height: .8; }
-  .mock__logo b, .mock__title b { display: inline-block; width: .56em; height: .56em; border-radius: 50%; background: var(--sbz-red); vertical-align: baseline; }
-  .mock__links { display: flex; gap: 2cqi; margin-inline: auto; }
-  .mock__links span { width: 5.5cqi; height: .6cqi; border-radius: 1cqi; background: var(--sbz-dim); opacity: .55; }
-  .mock__cta { font-size: 1.4cqi; font-weight: 700; padding: .9cqi 2cqi; border-radius: 99px; background: var(--sbz-red); }
-  .mock__eyebrow { margin-top: 6cqi; font-size: 1.4cqi; letter-spacing: .16em; text-transform: uppercase; color: var(--sbz-dim); }
-  .mock__title { margin-top: 2cqi; font-size: 7.6cqi; line-height: .9; letter-spacing: -.055em; font-weight: 700; }
-  .mock__title span { font-weight: 500; }
-  .mock__btns { display: flex; gap: 1.5cqi; margin-top: 3.5cqi; }
-  .mock__btns span { font-size: 1.5cqi; font-weight: 700; padding: 1.2cqi 2.8cqi; border-radius: 99px; border: .25cqi solid var(--sbz-dim); }
-  .mock__btns span:first-child { background: var(--sbz-red); border-color: var(--sbz-red); }
-  .mock__ribbons { position: relative; margin: auto -5cqi 0; height: 10cqi; background: var(--sbz-white); overflow: hidden; }
-  .mock__ribbon { position: absolute; left: -5%; right: -5%; top: 50%; padding: 1cqi 0; white-space: nowrap; font-size: 1.9cqi; font-weight: 700; text-transform: uppercase; color: var(--sbz-white); }
-  .mock__ribbon--ink { background: var(--sbz-ink); transform: translateY(-50%) rotate(-4deg); }
-  .mock__ribbon--red { background: var(--sbz-red); transform: translateY(-50%) rotate(3deg); }
-  .mock figcaption { margin-top: 10px; font-size: .88rem; color: var(--muted); }
+  .phone .zoom img { border-radius: 6% / 3%; }
+  .duo figcaption { margin-top: 12px; font-size: .88rem; color: var(--muted); max-width: 70%; }
+
+  .tour { display: grid; gap: 44px; margin-top: 8px; }
+  .tour__item h3 { margin: 0; font-family: var(--f-display); font-stretch: 108%; font-weight: 700; font-size: 1.12rem; line-height: 1.3; display: flex; gap: 10px; align-items: baseline; }
+  .tour__item h3 span { font-family: var(--f-mono); font-size: .8rem; font-weight: 500; color: var(--accent); }
+  .tour__item > p { margin-top: 6px; color: var(--muted); max-width: 62ch; }
+
+  .lightbox { width: min(1200px, 100% - 32px); max-width: none; max-height: none; padding: 0; border: 0; background: transparent; overflow: visible; }
+  .lightbox::backdrop { background: var(--scrim); }
+  .lightbox img { display: block; width: 100%; height: auto; max-height: 86vh; object-fit: contain; border-radius: 8px; }
+  .lightbox button { position: absolute; top: -48px; right: 0; min-height: 40px; padding: 0 14px; border-radius: 6px; border: 0; background: var(--paper); color: var(--ink); font: inherit; font-weight: 600; font-size: .9rem; cursor: pointer; }
 
   /* Secciones */
   section { margin-top: 48px; }
@@ -167,6 +165,9 @@
     .days li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
     .opt { grid-template-columns: auto minmax(0, 1fr); }
     .opt .amount { grid-column: 2; font-size: 1rem; }
+    .duo .browser { width: 84%; }
+    .phone { width: 30%; border-width: 4px; }
+    .duo figcaption { max-width: 66%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .caret { animation: none; }
@@ -201,38 +202,95 @@
     <div class="letter">
       <p>Hola Jessica, gracias por la confianza. Te paso la propuesta para renovar showbizz.com.pe.</p>
       <p>La idea es reconstruir todo el diseño y actualizar la información, manteniendo su dominio y su hosting. Tomé como referencia DF Entertainment y Dale Play, pero con la identidad de Showbizz: negro, blanco y el rojo del logo, con Space Grotesk y Manrope. Hoy la web se ve muy oscura y casi no tiene información. La nueva se ve más clara, muestra sus más de 20 años de trayectoria y facilita que los contacten.</p>
-      <p>Ya avancé una primera versión para que vean hacia dónde va.</p>
+      <p>Ya avancé el diseño para que vean cómo quedaría. Todas las imágenes de esta cotización son capturas de esa propuesta, armada con sus propios videos.</p>
     </div>
 
-    <figure class="mock">
-      <div class="mock__frame">
-        <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url">showbizz.com.pe</span></div>
-        <div class="mock__screen" aria-hidden="true">
-          <div class="mock__nav">
-            <span class="mock__logo">sh<b></b>w<br>bizz</span>
-            <span class="mock__links"><span></span><span></span><span></span><span></span></span>
-            <span class="mock__cta">Contáctanos</span>
-          </div>
-          <p class="mock__eyebrow">Productora de entretenimiento · Desde 2001</p>
-          <p class="mock__title"><span>Hacemos que</span><br>el sh<b></b>w suceda.</p>
-          <div class="mock__btns"><span>Contáctanos</span><span>Ver shows</span></div>
-          <div class="mock__ribbons">
-            <div class="mock__ribbon mock__ribbon--ink">Espectáculos · Conferencias · Experiencias · Producción integral · Espectáculos</div>
-            <div class="mock__ribbon mock__ribbon--red">Marketing · Desarrollo de artistas · Logística · Contenido · Marketing</div>
-          </div>
-        </div>
+    <figure class="duo">
+      <div class="browser">
+        <div class="browser__bar"><i></i><i></i><i></i><span>showbizz.com.pe</span></div>
+        <button class="zoom" type="button" data-full="img/hero-desktop.jpg"><img src="img/hero-desktop.jpg" width="1200" height="750" alt="Portada propuesta para showbizz.com.pe en computadora: titular 'Hacemos que el show suceda' sobre un video de Fuerza Bruta" loading="eager"></button>
       </div>
-      <figcaption>Portada de la propuesta. El diseño completo lo revisamos juntos antes de publicar.</figcaption>
+      <div class="phone">
+        <button class="zoom" type="button" data-full="img/hero-mobile.jpg"><img src="img/hero-mobile.jpg" width="520" height="1093" alt="La misma portada vista en celular" loading="eager"></button>
+      </div>
+      <figcaption>La portada en computadora y en celular. Toca cualquier imagen para verla en grande.</figcaption>
     </figure>
 
     <section>
       <h2>Qué incluye</h2>
+      <p class="lead">Te muestro punto por punto cómo quedaría. Las fotos y los textos finales se ajustan con la información que me envíen.</p>
+
+      <div class="tour">
+        <div class="tour__item">
+          <h3><span>1</span>Información actualizada de Showbizz</h3>
+          <p>Quiénes son, en pocas líneas y con los datos que más pesan: más de 20 años de trayectoria y las grandes producciones que han traído al Perú.</p>
+          <figure class="shot">
+            <div class="browser">
+              <div class="browser__bar"><i></i><i></i><i></i><span>showbizz.com.pe/#nosotros</span></div>
+              <button class="zoom" type="button" data-full="img/nosotros.jpg"><img src="img/nosotros.jpg" width="1200" height="750" alt="Sección Nosotros con las cifras +20 años de trayectoria y +12 grandes producciones" loading="lazy"></button>
+            </div>
+          </figure>
+        </div>
+
+        <div class="tour__item">
+          <h3><span>2</span>Sus líneas de negocio</h3>
+          <p>Espectáculos, conferencias y experiencias, cada una con su imagen. Al pasar el mouse se abre y muestra sus casos.</p>
+          <figure class="shot">
+            <div class="browser">
+              <div class="browser__bar"><i></i><i></i><i></i><span>showbizz.com.pe/#lineas</span></div>
+              <button class="zoom" type="button" data-full="img/lineas.jpg"><img src="img/lineas.jpg" width="1200" height="717" alt="Tres tarjetas con las líneas de negocio: Espectáculos, Conferencias y Experiencias" loading="lazy"></button>
+            </div>
+          </figure>
+        </div>
+
+        <div class="tour__item">
+          <h3><span>3</span>Los últimos shows, con video</h3>
+          <p>Fuerza Bruta, Dragonland y Deepak Chopra al frente. Al hacer clic en cualquiera se reproduce su video.</p>
+          <figure class="shot">
+            <div class="browser">
+              <div class="browser__bar"><i></i><i></i><i></i><span>showbizz.com.pe/#shows</span></div>
+              <button class="zoom" type="button" data-full="img/shows.jpg"><img src="img/shows.jpg" width="1200" height="708" alt="Carrusel de shows recientes: Fuerza Bruta, Dragonland y Deepak Chopra" loading="lazy"></button>
+            </div>
+          </figure>
+        </div>
+
+        <div class="tour__item">
+          <h3><span>4</span>Su trayectoria desde 2001</h3>
+          <p>Shakira, Paul McCartney, Lady Gaga, Cirque du Soleil y más, año por año. Al pasar el mouse por cada show aparece un fragmento de su video.</p>
+          <figure class="shot">
+            <div class="browser">
+              <div class="browser__bar"><i></i><i></i><i></i><span>showbizz.com.pe/#trayectoria</span></div>
+              <button class="zoom" type="button" data-full="img/trayectoria.jpg"><img src="img/trayectoria.jpg" width="1200" height="660" alt="Línea de tiempo con Paul McCartney, Cirque du Soleil y Lady Gaga, con el video de Lady Gaga flotando al pasar el mouse" loading="lazy"></button>
+            </div>
+          </figure>
+        </div>
+
+        <div class="tour__item">
+          <h3><span>5</span>Portafolio completo</h3>
+          <p>Una página con todas sus producciones, con filtros por conciertos, espectáculos, experiencias y conferencias, y el video de cada una.</p>
+          <figure class="shot">
+            <div class="browser">
+              <div class="browser__bar"><i></i><i></i><i></i><span>showbizz.com.pe/portafolio</span></div>
+              <button class="zoom" type="button" data-full="img/portafolio-grid.jpg"><img src="img/portafolio-grid.jpg" width="1200" height="658" alt="Página de portafolio con tarjetas de Dragonland, Deepak Chopra, Paul McCartney, Cirque du Soleil y Lady Gaga" loading="lazy"></button>
+            </div>
+          </figure>
+        </div>
+
+        <div class="tour__item">
+          <h3><span>6</span>Formularios para clientes y proveedores</h3>
+          <p>Uno para quienes quieren producir un evento con ustedes y otro para técnicos y proveedores que quieren trabajar en sus shows. Los mensajes llegan a su correo.</p>
+          <figure class="shot">
+            <div class="browser">
+              <div class="browser__bar"><i></i><i></i><i></i><span>showbizz.com.pe/#contacto</span></div>
+              <button class="zoom" type="button" data-full="img/contacto.jpg"><img src="img/contacto.jpg" width="1200" height="750" alt="Sección de contacto con formulario de dos pestañas: producir un evento y ser parte del equipo" loading="lazy"></button>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 44px">Y además</h2>
       <ul class="list">
-        <li>Nuevo diseño de toda la web, que se vea bien en computadora y en celular.</li>
-        <li>Página de inicio con video principal, quiénes son, el reel, sus líneas de negocio, los últimos shows, la trayectoria desde 2001, servicios y contacto.</li>
-        <li>Página de portafolio con todos sus shows y sus videos.</li>
-        <li>Actualización de toda la información con lo que ustedes me envíen.</li>
-        <li>Un formulario para clientes y otro para proveedores que quieran trabajar con ustedes. Los mensajes llegan a su correo.</li>
+        <li>Diseño adaptado a celular en todas las secciones.</li>
         <li>Videos optimizados para que la web cargue rápido.</li>
         <li>Publicación en showbizz.com.pe, en su mismo dominio y hosting.</li>
         <li>Dos rondas de cambios y un mes de soporte después de publicar.</li>
@@ -317,6 +375,11 @@
   </article>
 </div>
 
+<dialog class="lightbox" id="lightbox" aria-label="Imagen ampliada">
+  <button type="button" id="lightbox-close">Cerrar</button>
+  <img id="lightbox-img" alt="">
+</dialog>
+
 <script>
 (() => {
   /* Datos editables */
@@ -391,6 +454,18 @@
 
     try { localStorage.setItem(KEY, JSON.stringify([...document.querySelectorAll('[data-opt]:checked')].map((el) => el.dataset.opt))); } catch (e) { /* sin almacenamiento */ }
   };
+
+  // Ver capturas en grande
+  const box = $('lightbox');
+  const boxImg = $('lightbox-img');
+  document.querySelectorAll('[data-full]').forEach((btn) => btn.addEventListener('click', () => {
+    const img = btn.querySelector('img');
+    boxImg.src = btn.dataset.full;
+    boxImg.alt = img ? img.alt : '';
+    if (typeof box.showModal === 'function') box.showModal();
+  }));
+  $('lightbox-close').addEventListener('click', () => box.close());
+  box.addEventListener('click', (e) => { if (e.target === box) box.close(); });
 
   $('options').addEventListener('change', render);
   $('copy').addEventListener('click', () => {
