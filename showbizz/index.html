@@ -130,17 +130,41 @@
   .price p { font-weight: 600; }
   .price small { display: block; font-weight: 400; color: var(--muted); font-size: .9rem; }
   .amount { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 1.15rem; white-space: nowrap; }
-  .opt-title { margin-top: 18px; font-size: .95rem; color: var(--muted); }
-  .opt { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid var(--line); cursor: pointer; }
+  .extras { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .extras h3 { margin: 0; font-family: var(--f-display); font-stretch: 108%; font-weight: 700; font-size: 1.2rem; line-height: 1.25; }
+  .extras > p { margin-top: 6px; color: var(--muted); max-width: 62ch; }
+  .group { margin-top: 22px; font-family: var(--f-mono); font-size: .74rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
+  .opt {
+    position: relative; display: flex; flex-direction: column; gap: 8px; min-width: 0;
+    padding: 16px 16px 18px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--paper);
+    cursor: pointer; transition: border-color .2s, background-color .2s;
+  }
+  .opt:hover { border-color: var(--muted); }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
   .opt input { position: absolute; opacity: 0; pointer-events: none; }
-  .switch { position: relative; width: 38px; height: 22px; border-radius: 999px; background: var(--line); transition: background-color .2s; }
-  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); box-shadow: 0 1px 2px rgba(0, 0, 0, .25); transition: transform .2s; }
-  .opt:has(input:checked) .switch { background: var(--accent); }
-  .opt:has(input:checked) .switch::after { transform: translateX(16px); }
-  .opt:has(input:focus-visible) .switch { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .opt__name { font-weight: 500; display: block; }
-  .opt__desc { display: block; color: var(--muted); font-size: .9rem; }
-  .total { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-top: 6px; padding: 18px 20px; border-radius: 6px; background: var(--accent-soft); }
+  .opt--wide { grid-column: 1 / -1; }
+  .opt__top { display: flex; align-items: center; gap: 12px; padding-right: 30px; }
+  .opt__icon { flex: none; width: 38px; height: 38px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+  .opt:has(input:checked) .opt__icon { background: var(--accent); color: var(--on-accent); }
+  .opt__icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .opt__name { font-weight: 600; line-height: 1.3; }
+  .opt__desc { color: var(--muted); font-size: .92rem; line-height: 1.55; }
+  .opt .amount { font-size: 1rem; margin-top: auto; }
+  .opt__check { position: absolute; top: 16px; right: 16px; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--muted); }
+  .opt:has(input:checked) .opt__check { border-color: var(--accent); background: var(--accent); }
+  .opt:has(input:checked) .opt__check::after {
+    content: ""; position: absolute; left: 6px; top: 6px; width: 8px; height: 4px;
+    border-left: 2px solid var(--on-accent); border-bottom: 2px solid var(--on-accent); transform: rotate(-45deg);
+  }
+  .deal { margin-top: 16px; padding: 12px 14px; border-radius: 6px; border: 1px dashed var(--accent); color: var(--ink); font-size: .95rem; }
+  .deal strong { color: var(--accent); }
+  .breakdown { width: 100%; display: grid; gap: 4px; margin-top: 8px; font-size: .92rem; }
+  .breakdown li { display: flex; justify-content: space-between; gap: 12px; }
+  .breakdown li span:last-child { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .breakdown .off { color: var(--accent); }
+  .total { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 16px; flex-wrap: wrap; margin-top: 22px; padding: 18px 20px; border-radius: 6px; background: var(--accent-soft); }
   .total span { font-weight: 600; }
   .total strong { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 1.8rem; letter-spacing: -.02em; }
   .total small { display: block; width: 100%; font-size: .9rem; color: var(--muted); }
@@ -163,8 +187,7 @@
     body { font-size: 16px; }
     .head__meta { text-align: left; }
     .days li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-    .opt { grid-template-columns: auto minmax(0, 1fr); }
-    .opt .amount { grid-column: 2; font-size: 1rem; }
+    .opts { grid-template-columns: minmax(0, 1fr); }
     .duo .browser { width: 84%; }
     .phone { width: 30%; border-width: 4px; }
     .duo figcaption { max-width: 66%; }
@@ -316,23 +339,84 @@
         <span class="amount" id="base-price">S/ 1,300</span>
       </div>
 
-      <p class="opt-title">Opcional, solo si lo necesitan:</p>
-      <div id="options">
-        <label class="opt" for="opt-textos">
-          <input type="checkbox" id="opt-textos" data-opt="textos">
-          <span class="switch" aria-hidden="true"></span>
-          <span><span class="opt__name">Redacción de textos</span><span class="opt__desc">Si prefieren que yo escriba o corrija los textos de cada sección.</span></span>
-          <span class="amount">S/ 200</span>
-        </label>
-        <label class="opt" for="opt-soporte">
-          <input type="checkbox" id="opt-soporte" data-opt="soporte">
-          <span class="switch" aria-hidden="true"></span>
-          <span><span class="opt__name">Soporte mensual</span><span class="opt__desc">Subir shows nuevos, cambiar información y mantener la web al día. Empieza después del mes de soporte incluido.</span></span>
-          <span class="amount">S/ 150 / mes</span>
-        </label>
+      <div class="extras" id="options">
+        <h3>Para llevar la web más lejos</h3>
+        <p>Opcionales que ayudan a vender más shows y a conseguir auspiciadores. Marquen los que les interesen y el total se actualiza abajo.</p>
+
+        <p class="group">Nuevas secciones</p>
+        <div class="opts">
+          <label class="opt" for="opt-agenda">
+            <input type="checkbox" id="opt-agenda" data-opt="agenda">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span class="opt__name">Agenda de próximos shows</span></span>
+            <span class="opt__desc">Los eventos que vienen, con cuenta regresiva y un botón directo a la ticketera. El público vuelve a revisarla y ustedes la actualizan en minutos.</span>
+            <span class="amount" data-price="agenda">+ S/ 250</span>
+          </label>
+          <label class="opt" for="opt-paginas">
+            <input type="checkbox" id="opt-paginas" data-opt="paginas">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M20.5 16l-5-5-8 8.5"/></svg></span><span class="opt__name">Una página para cada show</span></span>
+            <span class="opt__desc">Cada producción con su galería de fotos, video, fecha, lugar y marcas aliadas. Ideal para compartir en redes y para mostrarle a un auspiciador lo que lograron.</span>
+            <span class="amount" data-price="paginas">+ S/ 400</span>
+          </label>
+          <label class="opt" for="opt-marcas">
+            <input type="checkbox" id="opt-marcas" data-opt="marcas">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span><span class="opt__name">Sección para auspiciadores</span></span>
+            <span class="opt__desc">Las marcas que ya confiaron en Showbizz, los formatos de auspicio y un formulario para nuevas alianzas. Una puerta directa a nuevos sponsors.</span>
+            <span class="amount" data-price="marcas">+ S/ 250</span>
+          </label>
+          <label class="opt" for="opt-noticias">
+            <input type="checkbox" id="opt-noticias" data-opt="noticias">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h12v13H6a2 2 0 0 1-2-2z"/><path d="M16 9h4v7.5a2 2 0 0 1-4 0"/><path d="M7 9h6M7 12h6M7 15h4"/></svg></span><span class="opt__name">Noticias y backstage</span></span>
+            <span class="opt__desc">Anuncios, notas de prensa y fotos detrás de escena. Mantiene la web activa entre un show y otro, y ayuda a que los encuentren en Google.</span>
+            <span class="amount" data-price="noticias">+ S/ 250</span>
+          </label>
+        </div>
+
+        <p class="group">Contenido y recursos</p>
+        <div class="opts">
+          <label class="opt" for="opt-reel">
+            <input type="checkbox" id="opt-reel" data-opt="reel">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M10 9.5v5l4.5-2.5z"/></svg></span><span class="opt__name">Nuevo reel y clips de video</span></span>
+            <span class="opt__desc">Edito un reel nuevo de 60 segundos y clips cortos de cada show con su material, listos para la web y para redes.</span>
+            <span class="amount" data-price="reel">+ S/ 350</span>
+          </label>
+          <label class="opt" for="opt-graficos">
+            <input type="checkbox" id="opt-graficos" data-opt="graficos">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/></svg></span><span class="opt__name">Gráficos y animaciones</span></span>
+            <span class="opt__desc">Banners, íconos y animaciones con la identidad de Showbizz para la portada, las secciones y el anuncio de cada nuevo show.</span>
+            <span class="amount" data-price="graficos">+ S/ 300</span>
+          </label>
+          <label class="opt opt--wide" for="opt-textos">
+            <input type="checkbox" id="opt-textos" data-opt="textos">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5M8 10.5h5"/></svg></span><span class="opt__name">Textos que venden y posicionamiento en Google</span></span>
+            <span class="opt__desc">Escribo los textos de toda la web pensando en clientes y auspiciadores, con las palabras que la gente busca. Así, quien busque "productora de espectáculos en Lima" tiene más chances de llegar a ustedes.</span>
+            <span class="amount" data-price="textos">+ S/ 200</span>
+          </label>
+        </div>
+
+        <p class="group">Después del lanzamiento</p>
+        <div class="opts">
+          <label class="opt opt--wide" for="opt-plan">
+            <input type="checkbox" id="opt-plan" data-opt="plan">
+            <span class="opt__check" aria-hidden="true"></span>
+            <span class="opt__top"><span class="opt__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20v-4h-4"/></svg></span><span class="opt__name">Plan de actualización mensual</span></span>
+            <span class="opt__desc">Cada mes subo los shows nuevos, fotos y videos, actualizo la agenda y reviso que todo funcione. Ustedes solo me mandan el material. Empieza después del mes de soporte incluido.</span>
+            <span class="amount" data-price="plan">S/ 150 al mes</span>
+          </label>
+        </div>
+
+        <p class="deal" id="deal">Si eligen 3 o más opcionales, les hago <strong>10% de descuento</strong> en ellos.</p>
+        <p class="aside">Los opcionales se pueden entregar junto con la web o durante la semana siguiente, sin mover la fecha del sábado.</p>
       </div>
 
       <div class="total">
+        <ul class="breakdown" id="breakdown"><li><span>Rediseño y actualización</span><span>S/ 1,300</span></li></ul>
         <span>Total</span>
         <strong id="total">S/ 1,300</strong>
         <small id="total-note">50% para empezar (S/ 650) y 50% el día que publicamos (S/ 650). Pago por transferencia, Yape o Plin.</small>
@@ -389,9 +473,16 @@
     email: '',      // Tu correo para la firma
     base: 1300,
     opciones: {
-      textos: { nombre: 'Redacción de textos', precio: 200 },
-      soporte: { nombre: 'Soporte mensual', precio: 150, mensual: true },
+      agenda: { nombre: 'Agenda de próximos shows', precio: 250 },
+      paginas: { nombre: 'Una página para cada show', precio: 400 },
+      marcas: { nombre: 'Sección para auspiciadores', precio: 250 },
+      noticias: { nombre: 'Noticias y backstage', precio: 250 },
+      reel: { nombre: 'Nuevo reel y clips de video', precio: 350 },
+      graficos: { nombre: 'Gráficos y animaciones', precio: 300 },
+      textos: { nombre: 'Textos que venden y posicionamiento en Google', precio: 200 },
+      plan: { nombre: 'Plan de actualización mensual', precio: 150, mensual: true },
     },
+    descuento: { desde: 3, porcentaje: 10 },   // % sobre los opcionales de pago único
     entrega: 'sábado 24 de octubre',
   };
 
@@ -401,12 +492,16 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Recordar lo marcado en este navegador
-  const KEY = 'gcd-cotizacion-showbizz-v2';
+  const KEY = 'gcd-cotizacion-showbizz-v3';
   let saved = [];
   try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { saved = []; }
   document.querySelectorAll('[data-opt]').forEach((el) => { el.checked = Array.isArray(saved) && saved.includes(el.dataset.opt); });
 
   $('base-price').textContent = money(CONFIG.base);
+  document.querySelectorAll('[data-price]').forEach((el) => {
+    const o = CONFIG.opciones[el.dataset.price];
+    if (o) el.textContent = o.mensual ? `${money(o.precio)} al mes` : `+ ${money(o.precio)}`;
+  });
   if (CONFIG.email || CONFIG.whatsapp) {
     const phone = CONFIG.whatsapp.replace(/^(\d{2})(\d{3})(\d{3})(\d{3})$/, '+$1 $2 $3 $4');
     $('contact').textContent = [CONFIG.email, CONFIG.whatsapp && `WhatsApp ${phone}`].filter(Boolean).join(' · ');
@@ -434,18 +529,36 @@
     const chosen = [...document.querySelectorAll('[data-opt]:checked')].map((el) => CONFIG.opciones[el.dataset.opt]);
     const once = chosen.filter((o) => !o.mensual);
     const monthly = chosen.filter((o) => o.mensual);
-    const total = CONFIG.base + once.reduce((s, o) => s + o.precio, 0);
+    const extrasSum = once.reduce((s, o) => s + o.precio, 0);
+    const { desde, porcentaje } = CONFIG.descuento;
+    const discount = chosen.length >= desde ? Math.round(extrasSum * porcentaje / 100) : 0;
+    const total = CONFIG.base + extrasSum - discount;
     const half = Math.round(total / 2);
 
     animateTotal(total);
+
+    // Desglose
+    const rows = [[`Rediseño y actualización`, money(CONFIG.base)]];
+    if (once.length) rows.push([`Opcionales (${once.length})`, `+ ${money(extrasSum)}`]);
+    if (discount) rows.push([`Descuento ${porcentaje}%`, `− ${money(discount)}`, 'off']);
+    $('breakdown').innerHTML = rows.map(([a, b, c]) => `<li${c ? ` class="${c}"` : ''}><span>${a}</span><span>${b}</span></li>`).join('');
+
     let note = `50% para empezar (${money(half)}) y 50% el día que publicamos (${money(total - half)}). Pago por transferencia, Yape o Plin.`;
-    if (monthly.length) note += ` El soporte mensual (${money(monthly[0].precio)}) se paga aparte, cada mes.`;
+    if (monthly.length) note += ` El plan mensual (${money(monthly[0].precio)}) se paga aparte, cada mes.`;
     $('total-note').textContent = note;
 
-    const extras = chosen.map((o) => o.mensual ? `${o.nombre} (${money(o.precio)} al mes)` : `${o.nombre} (${money(o.precio)})`);
+    // Aviso del descuento
+    const faltan = desde - chosen.length;
+    const deal = $('deal');
+    if (discount) deal.innerHTML = `Listo: tienen <strong>${porcentaje}% de descuento</strong> en los opcionales, un ahorro de ${money(discount)}.`;
+    else if (chosen.length && faltan > 0) deal.innerHTML = `Agreguen ${faltan === 1 ? 'uno más' : `${faltan} más`} y les hago <strong>${porcentaje}% de descuento</strong> en los opcionales.`;
+    else deal.innerHTML = `Si eligen ${desde} o más opcionales, les hago <strong>${porcentaje}% de descuento</strong> en ellos.`;
+
+    const extras = chosen.map((o) => o.mensual ? `${o.nombre} (${money(o.precio)} al mes)` : o.nombre);
     message = [
       `Hola Gio, confirmamos la cotización ${CONFIG.numero} del rediseño web de Showbizz.`,
-      extras.length ? `Incluimos: ${extras.join(' y ')}.` : null,
+      extras.length ? `Opcionales: ${extras.join(', ')}.` : null,
+      discount ? `Descuento ${porcentaje}% en opcionales: ${money(discount)}.` : null,
       `Total: ${money(total)}. Adelanto: ${money(half)}.`,
       `Entrega: ${CONFIG.entrega}.`,
     ].filter(Boolean).join('\n');
