@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cotización Rediseño Showbizz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Cotización de Giocodedev_ para el rediseño de la web de Showbizz S.A.C.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* Layout: una carta-cotización de una sola columna, como un documento bien escrito.
+     La marca aparece en el guion bajo de Giocodedev_, que funciona como cursor. */
+  :root {
+    --bg: #F3F4F8;
+    --paper: #FFFFFF;
+    --ink: #121527;
+    --muted: #5A5F78;
+    --line: #DCDFEA;
+    --accent: #3A2EF0;
+    --accent-soft: #EBE9FF;
+    --on-accent: #FFFFFF;
+
+    /* Colores de Showbizz, solo para la vista previa de su web (iguales en ambos temas) */
+    --sbz-ink: #0A0A0B;
+    --sbz-red: #E4232E;
+    --sbz-white: #FFFFFF;
+    --sbz-glow: rgba(228, 35, 46, .38);
+    --sbz-dim: rgba(255, 255, 255, .7);
+
+    --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+    --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --f-client: "Space Grotesk", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0C0E17; --paper: #141726; --ink: #ECEEF7; --muted: #A0A5BF; --line: #282C42;
+      --accent: #8F86FF; --accent-soft: #221E4B; --on-accent: #0C0E17;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0C0E17; --paper: #141726; --ink: #ECEEF7; --muted: #A0A5BF; --line: #282C42;
+    --accent: #8F86FF; --accent-soft: #221E4B; --on-accent: #0C0E17;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  h1, h2 { margin: 0; font-family: var(--f-display); text-wrap: balance; }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .page {
+    max-width: 800px; margin-inline: auto; padding-block: 28px 64px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .sheet { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: clamp(24px, 6vw, 64px); }
+
+  /* Marca */
+  .brand { font-family: var(--f-mono); font-weight: 600; font-size: 1.05rem; letter-spacing: -.01em; white-space: nowrap; }
+  .caret { display: inline-block; width: .55em; height: .12em; margin-left: .04em; background: var(--accent); vertical-align: baseline; animation: blink 1.05s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: .18; } }
+
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 24px; flex-wrap: wrap; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .head__meta { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); text-align: right; line-height: 1.6; }
+
+  .to { margin-top: 32px; font-size: .95rem; color: var(--muted); }
+  .to strong { color: var(--ink); font-weight: 600; }
+  h1 { margin-top: 10px; font-stretch: 118%; font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); line-height: 1; letter-spacing: -.01em; }
+
+  .letter { margin-top: 26px; display: grid; gap: 14px; max-width: 64ch; }
+
+  /* Vista previa */
+  .mock { container-type: inline-size; margin: 32px 0 0; max-width: 100%; }
+  .mock__frame { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--paper); }
+  .mock__bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); background: var(--bg); }
+  .mock__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .mock__url { margin-left: 10px; font-family: var(--f-mono); font-size: .74rem; color: var(--muted); }
+  .mock__screen {
+    position: relative; overflow: hidden; aspect-ratio: 16 / 9; max-width: 100%;
+    display: flex; flex-direction: column; padding: 4cqi 5cqi 0;
+    background: radial-gradient(circle at 82% 18%, var(--sbz-glow), transparent 55%), var(--sbz-ink);
+    color: var(--sbz-white); font-family: var(--f-client);
+  }
+  .mock__nav { display: flex; align-items: center; gap: 3cqi; }
+  .mock__logo { font-weight: 700; font-size: 2.6cqi; letter-spacing: -.04em; line-height: .8; }
+  .mock__logo b, .mock__title b { display: inline-block; width: .56em; height: .56em; border-radius: 50%; background: var(--sbz-red); vertical-align: baseline; }
+  .mock__links { display: flex; gap: 2cqi; margin-inline: auto; }
+  .mock__links span { width: 5.5cqi; height: .6cqi; border-radius: 1cqi; background: var(--sbz-dim); opacity: .55; }
+  .mock__cta { font-size: 1.4cqi; font-weight: 700; padding: .9cqi 2cqi; border-radius: 99px; background: var(--sbz-red); }
+  .mock__eyebrow { margin-top: 6cqi; font-size: 1.4cqi; letter-spacing: .16em; text-transform: uppercase; color: var(--sbz-dim); }
+  .mock__title { margin-top: 2cqi; font-size: 7.6cqi; line-height: .9; letter-spacing: -.055em; font-weight: 700; }
+  .mock__title span { font-weight: 500; }
+  .mock__btns { display: flex; gap: 1.5cqi; margin-top: 3.5cqi; }
+  .mock__btns span { font-size: 1.5cqi; font-weight: 700; padding: 1.2cqi 2.8cqi; border-radius: 99px; border: .25cqi solid var(--sbz-dim); }
+  .mock__btns span:first-child { background: var(--sbz-red); border-color: var(--sbz-red); }
+  .mock__ribbons { position: relative; margin: auto -5cqi 0; height: 10cqi; background: var(--sbz-white); overflow: hidden; }
+  .mock__ribbon { position: absolute; left: -5%; right: -5%; top: 50%; padding: 1cqi 0; white-space: nowrap; font-size: 1.9cqi; font-weight: 700; text-transform: uppercase; color: var(--sbz-white); }
+  .mock__ribbon--ink { background: var(--sbz-ink); transform: translateY(-50%) rotate(-4deg); }
+  .mock__ribbon--red { background: var(--sbz-red); transform: translateY(-50%) rotate(3deg); }
+  .mock figcaption { margin-top: 10px; font-size: .88rem; color: var(--muted); }
+
+  /* Secciones */
+  section { margin-top: 48px; }
+  h2 { font-stretch: 108%; font-weight: 700; font-size: 1.4rem; line-height: 1.2; margin-bottom: 14px; }
+  .lead { color: var(--muted); margin-bottom: 14px; max-width: 64ch; }
+  .list li { position: relative; padding-left: 26px; }
+  .list li + li { margin-top: 9px; }
+  .list li::before {
+    content: ""; position: absolute; left: 3px; top: .5em; width: 11px; height: 6px;
+    border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg);
+  }
+  .plain li { position: relative; padding-left: 20px; }
+  .plain li + li { margin-top: 8px; }
+  .plain li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .aside { margin-top: 16px; padding: 14px 16px; border-radius: 6px; background: var(--bg); color: var(--muted); font-size: .95rem; }
+
+  /* Días */
+  .days li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .days li:last-child { border-bottom: 1px solid var(--line); }
+  .days time { font-family: var(--f-mono); font-size: .88rem; color: var(--accent); font-weight: 500; padding-top: 2px; }
+  .days li:last-child time { font-weight: 600; }
+
+  /* Inversión */
+  .price { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 18px 0; border-top: 1px solid var(--line); }
+  .price p { font-weight: 600; }
+  .price small { display: block; font-weight: 400; color: var(--muted); font-size: .9rem; }
+  .amount { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 1.15rem; white-space: nowrap; }
+  .opt-title { margin-top: 18px; font-size: .95rem; color: var(--muted); }
+  .opt { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid var(--line); cursor: pointer; }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .switch { position: relative; width: 38px; height: 22px; border-radius: 999px; background: var(--line); transition: background-color .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); box-shadow: 0 1px 2px rgba(0, 0, 0, .25); transition: transform .2s; }
+  .opt:has(input:checked) .switch { background: var(--accent); }
+  .opt:has(input:checked) .switch::after { transform: translateX(16px); }
+  .opt:has(input:focus-visible) .switch { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .opt__name { font-weight: 500; display: block; }
+  .opt__desc { display: block; color: var(--muted); font-size: .9rem; }
+  .total { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-top: 6px; padding: 18px 20px; border-radius: 6px; background: var(--accent-soft); }
+  .total span { font-weight: 600; }
+  .total strong { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 1.8rem; letter-spacing: -.02em; }
+  .total small { display: block; width: 100%; font-size: .9rem; color: var(--muted); }
+
+  /* Confirmación */
+  .confirm { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .msg { margin-top: 14px; padding: 14px 16px; border-radius: 6px; border: 1px dashed var(--line); background: var(--bg); font-family: var(--f-mono); font-size: .84rem; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 6px; border: 1.5px solid transparent; font: inherit; font-weight: 600; font-size: .95rem; text-decoration: none; cursor: pointer; transition: transform .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn--accent { background: var(--accent); color: var(--on-accent); }
+  .btn--line { background: transparent; color: var(--ink); border-color: var(--line); }
+  .status { margin-top: 8px; min-height: 1.4em; font-family: var(--f-mono); font-size: .8rem; color: var(--muted); }
+
+  .sign { margin-top: 36px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  .sign p { color: var(--muted); font-size: .95rem; }
+  .sign .who { color: var(--ink); font-weight: 600; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .head__meta { text-align: left; }
+    .days li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .opt { grid-template-columns: auto minmax(0, 1fr); }
+    .opt .amount { grid-column: 2; font-size: 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .caret { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cotización · Rediseño web Showbizz">
+<meta property="og:description" content="Propuesta de Giocodedev_ para el rediseño y actualización de showbizz.com.pe.">
+<meta property="og:image" content="https://gaegoavil.github.io/giocodedev-cotizaciones/showbizz/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C0E17'/%3E%3Crect x='16' y='40' width='32' height='7' fill='%238F86FF'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="page">
+  <article class="sheet">
+    <header class="head">
+      <div class="brand" aria-label="Giocodedev_">Giocodedev<span class="caret" aria-hidden="true"></span></div>
+      <div class="head__meta">
+        Cotización GCD-2610-SBZ<br>
+        Lima, 20 de octubre de 2026<br>
+        Válida hasta el 31 de octubre
+      </div>
+    </header>
+
+    <p class="to">Para <strong>Jessica</strong> · Showbizz S.A.C.</p>
+    <h1>Rediseño de la web de Showbizz<span class="caret" aria-hidden="true"></span></h1>
+
+    <div class="letter">
+      <p>Hola Jessica, gracias por la confianza. Te paso la propuesta para renovar showbizz.com.pe.</p>
+      <p>La idea es reconstruir todo el diseño y actualizar la información, manteniendo su dominio y su hosting. Tomé como referencia DF Entertainment y Dale Play, pero con la identidad de Showbizz: negro, blanco y el rojo del logo, con Space Grotesk y Manrope. Hoy la web se ve muy oscura y casi no tiene información. La nueva se ve más clara, muestra sus más de 20 años de trayectoria y facilita que los contacten.</p>
+      <p>Ya avancé una primera versión para que vean hacia dónde va.</p>
+    </div>
+
+    <figure class="mock">
+      <div class="mock__frame">
+        <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url">showbizz.com.pe</span></div>
+        <div class="mock__screen" aria-hidden="true">
+          <div class="mock__nav">
+            <span class="mock__logo">sh<b></b>w<br>bizz</span>
+            <span class="mock__links"><span></span><span></span><span></span><span></span></span>
+            <span class="mock__cta">Contáctanos</span>
+          </div>
+          <p class="mock__eyebrow">Productora de entretenimiento · Desde 2001</p>
+          <p class="mock__title"><span>Hacemos que</span><br>el sh<b></b>w suceda.</p>
+          <div class="mock__btns"><span>Contáctanos</span><span>Ver shows</span></div>
+          <div class="mock__ribbons">
+            <div class="mock__ribbon mock__ribbon--ink">Espectáculos · Conferencias · Experiencias · Producción integral · Espectáculos</div>
+            <div class="mock__ribbon mock__ribbon--red">Marketing · Desarrollo de artistas · Logística · Contenido · Marketing</div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Portada de la propuesta. El diseño completo lo revisamos juntos antes de publicar.</figcaption>
+    </figure>
+
+    <section>
+      <h2>Qué incluye</h2>
+      <ul class="list">
+        <li>Nuevo diseño de toda la web, que se vea bien en computadora y en celular.</li>
+        <li>Página de inicio con video principal, quiénes son, el reel, sus líneas de negocio, los últimos shows, la trayectoria desde 2001, servicios y contacto.</li>
+        <li>Página de portafolio con todos sus shows y sus videos.</li>
+        <li>Actualización de toda la información con lo que ustedes me envíen.</li>
+        <li>Un formulario para clientes y otro para proveedores que quieran trabajar con ustedes. Los mensajes llegan a su correo.</li>
+        <li>Videos optimizados para que la web cargue rápido.</li>
+        <li>Publicación en showbizz.com.pe, en su mismo dominio y hosting.</li>
+        <li>Dos rondas de cambios y un mes de soporte después de publicar.</li>
+      </ul>
+      <p class="aside">No incluye venta de entradas (eso sigue con las ticketeras), compra o renovación de hosting y dominio, ni fotos o videos nuevos.</p>
+    </section>
+
+    <section>
+      <h2>Tiempo de entrega</h2>
+      <p class="lead">La web queda publicada el sábado 24 de octubre. Para llegar a esa fecha necesito su confirmación y la información a más tardar el miércoles 21.</p>
+      <ol class="days">
+        <li><time datetime="2026-10-21">Miércoles 21</time><span>Revisamos el diseño y me pasan la información actualizada.</span></li>
+        <li><time datetime="2026-10-22">Jueves 22</time><span>Armo la página de inicio y el portafolio con la información nueva.</span></li>
+        <li><time datetime="2026-10-23">Viernes 23</time><span>Formularios, videos y pruebas en celular. Les envío el link para que lo revisen.</span></li>
+        <li><time datetime="2026-10-24">Sábado 24</time><span>Hago los ajustes que me pidan y publicamos.</span></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Inversión</h2>
+      <div class="price">
+        <p>Rediseño y actualización de la web<small>Todo lo que está en “Qué incluye”</small></p>
+        <span class="amount" id="base-price">S/ 1,300</span>
+      </div>
+
+      <p class="opt-title">Opcional, solo si lo necesitan:</p>
+      <div id="options">
+        <label class="opt" for="opt-textos">
+          <input type="checkbox" id="opt-textos" data-opt="textos">
+          <span class="switch" aria-hidden="true"></span>
+          <span><span class="opt__name">Redacción de textos</span><span class="opt__desc">Si prefieren que yo escriba o corrija los textos de cada sección.</span></span>
+          <span class="amount">S/ 200</span>
+        </label>
+        <label class="opt" for="opt-soporte">
+          <input type="checkbox" id="opt-soporte" data-opt="soporte">
+          <span class="switch" aria-hidden="true"></span>
+          <span><span class="opt__name">Soporte mensual</span><span class="opt__desc">Subir shows nuevos, cambiar información y mantener la web al día. Empieza después del mes de soporte incluido.</span></span>
+          <span class="amount">S/ 150 / mes</span>
+        </label>
+      </div>
+
+      <div class="total">
+        <span>Total</span>
+        <strong id="total">S/ 1,300</strong>
+        <small id="total-note">50% para empezar (S/ 650) y 50% el día que publicamos (S/ 650). Pago por transferencia, Yape o Plin.</small>
+      </div>
+      <p class="aside">Si el presupuesto que manejan es distinto, me dicen y ajustamos el alcance para que encaje.</p>
+    </section>
+
+    <section>
+      <h2>Lo que necesito de ustedes</h2>
+      <ul class="plain">
+        <li>La información actualizada: quiénes son, líneas de negocio, servicios y shows.</li>
+        <li>Fotos y videos en buena calidad de los shows que quieran mostrar.</li>
+        <li>Acceso al hosting y al panel de la web actual.</li>
+        <li>El correo donde quieren recibir los mensajes de los formularios.</li>
+      </ul>
+      <p class="aside">El logo ya lo tengo, gracias.</p>
+    </section>
+
+    <section class="confirm">
+      <h2>Para confirmar</h2>
+      <p class="lead">Si estás de acuerdo, puedes confirmarme por WhatsApp con este mensaje. También puedes copiarlo.</p>
+      <pre class="msg" id="msg">Hola Gio, confirmamos la cotización del rediseño web de Showbizz.</pre>
+      <div class="actions">
+        <a class="btn btn--accent" id="wa" href="https://wa.me/" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+        <button class="btn btn--line" type="button" id="copy">Copiar mensaje</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+
+      <div class="sign">
+        <div>
+          <p>Cualquier duda me escribes.</p>
+          <p class="who">Gio</p>
+        </div>
+        <div>
+          <div class="brand">Giocodedev<span class="caret" aria-hidden="true"></span></div>
+          <p id="contact"></p>
+        </div>
+      </div>
+    </section>
+  </article>
+</div>
+
+<script>
+(() => {
+  /* Datos editables */
+  const CONFIG = {
+    numero: 'GCD-2610-SBZ',
+    whatsapp: '51939573618',   // Número con código de país, sin + ni espacios
+    email: '',      // Tu correo para la firma
+    base: 1300,
+    opciones: {
+      textos: { nombre: 'Redacción de textos', precio: 200 },
+      soporte: { nombre: 'Soporte mensual', precio: 150, mensual: true },
+    },
+    entrega: 'sábado 24 de octubre',
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const soles = new Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const money = (n) => soles.format(n).replace(/ /g, ' ');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Recordar lo marcado en este navegador
+  const KEY = 'gcd-cotizacion-showbizz-v2';
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { saved = []; }
+  document.querySelectorAll('[data-opt]').forEach((el) => { el.checked = Array.isArray(saved) && saved.includes(el.dataset.opt); });
+
+  $('base-price').textContent = money(CONFIG.base);
+  if (CONFIG.email || CONFIG.whatsapp) {
+    const phone = CONFIG.whatsapp.replace(/^(\d{2})(\d{3})(\d{3})(\d{3})$/, '+$1 $2 $3 $4');
+    $('contact').textContent = [CONFIG.email, CONFIG.whatsapp && `WhatsApp ${phone}`].filter(Boolean).join(' · ');
+  }
+
+  let shown = CONFIG.base;
+  let frame = 0;
+  const animateTotal = (to) => {
+    const el = $('total');
+    const from = shown;
+    shown = to;
+    cancelAnimationFrame(frame);
+    if (reduce || from === to) { el.textContent = money(to); return; }
+    const t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - t0) / 400, 1);
+      el.textContent = money(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+  };
+
+  let message = '';
+  const render = () => {
+    const chosen = [...document.querySelectorAll('[data-opt]:checked')].map((el) => CONFIG.opciones[el.dataset.opt]);
+    const once = chosen.filter((o) => !o.mensual);
+    const monthly = chosen.filter((o) => o.mensual);
+    const total = CONFIG.base + once.reduce((s, o) => s + o.precio, 0);
+    const half = Math.round(total / 2);
+
+    animateTotal(total);
+    let note = `50% para empezar (${money(half)}) y 50% el día que publicamos (${money(total - half)}). Pago por transferencia, Yape o Plin.`;
+    if (monthly.length) note += ` El soporte mensual (${money(monthly[0].precio)}) se paga aparte, cada mes.`;
+    $('total-note').textContent = note;
+
+    const extras = chosen.map((o) => o.mensual ? `${o.nombre} (${money(o.precio)} al mes)` : `${o.nombre} (${money(o.precio)})`);
+    message = [
+      `Hola Gio, confirmamos la cotización ${CONFIG.numero} del rediseño web de Showbizz.`,
+      extras.length ? `Incluimos: ${extras.join(' y ')}.` : null,
+      `Total: ${money(total)}. Adelanto: ${money(half)}.`,
+      `Entrega: ${CONFIG.entrega}.`,
+    ].filter(Boolean).join('\n');
+    $('msg').textContent = message;
+    $('wa').href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
+
+    try { localStorage.setItem(KEY, JSON.stringify([...document.querySelectorAll('[data-opt]:checked')].map((el) => el.dataset.opt))); } catch (e) { /* sin almacenamiento */ }
+  };
+
+  $('options').addEventListener('change', render);
+  $('copy').addEventListener('click', () => {
+    const status = $('status');
+    const fallback = () => {
+      const range = document.createRange();
+      range.selectNodeContents($('msg'));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      status.textContent = 'Texto seleccionado. Cópialo con Ctrl+C o manteniendo presionado.';
+    };
+    try {
+      navigator.clipboard.writeText(message).then(() => { status.textContent = 'Mensaje copiado.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
